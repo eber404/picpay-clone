@@ -6,6 +6,8 @@ import { Home } from './screens/Home'
 import { Wallet } from './screens/Wallet'
 import { Pay } from './screens/Pay'
 
+import { PayButton } from './components/PayButton'
+
 const { Navigator, Screen } = createBottomTabNavigator()
 
 const icons = {
@@ -16,10 +18,6 @@ const icons = {
   Wallet: {
     lib: AntDesign,
     name: 'creditcard',
-  },
-  Pay: {
-    lib: AntDesign,
-    name: 'home',
   },
   Notifications: {
     lib: Ionicons,
@@ -34,8 +32,16 @@ const icons = {
 export function Navigation() {
   return (
     <Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
+      screenOptions={({ route, navigation }) => ({
+        tabBarIcon: ({ color, size, focused }) => {
+          if (route.name === 'Pay')
+            return (
+              <PayButton
+                onPress={() => navigation.navigate('Pay')}
+                focused={focused}
+              />
+            )
+
           const { lib: Icon, name } = icons[route.name]
           return <Icon name={name} size={size} color={color} />
         },
@@ -55,7 +61,7 @@ export function Navigation() {
         component={Wallet}
         options={{ title: 'Carteira' }}
       />
-      <Screen name="Pay" component={Pay} options={{ title: 'Pagar' }} />
+      <Screen name="Pay" component={Pay} options={{ title: '' }} />
       <Screen
         name="Notifications"
         component={Pay}
