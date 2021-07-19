@@ -32,6 +32,7 @@ const icons = {
 export function Navigation() {
   return (
     <Navigator
+      initialRouteName="Wallet"
       screenOptions={({ route, navigation }) => ({
         tabBarIcon: ({ color, size, focused }) => {
           if (route.name === 'Pay')
@@ -61,13 +62,13 @@ export function Navigation() {
         component={Wallet}
         options={{ title: 'Carteira' }}
       />
-      <Screen name="Pay" component={Pay} options={{ title: '' }} />
+      <Screen name="Pay" component={Home} options={{ title: '' }} />
       <Screen
         name="Notifications"
-        component={Pay}
+        component={Home}
         options={{ title: 'Notificações' }}
       />
-      <Screen name="Settings" component={Pay} options={{ title: 'Ajustes' }} />
+      <Screen name="Settings" component={Home} options={{ title: 'Ajustes' }} />
     </Navigator>
   )
 }
