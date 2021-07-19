@@ -2,5 +2,5 @@ import React from 'react'
 import { Text } from 'react-native'
 
 export function Wallet() {
-  return <Text></Text>
+  return <Text>wallet</Text>
 }
